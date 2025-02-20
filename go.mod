@@ -1,4 +1,4 @@
-module MiniRL
+module github.com/gvarma28/MiniRL
 
 go 1.23.4
 
