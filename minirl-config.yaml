@@ -1,0 +1,6 @@
+server:
+  backend_url: "http://localhost:3000"
+  datastore_type: "redis"
+
+redis:
+  address: "localhost:6379"
