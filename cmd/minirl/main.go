@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/joho/godotenv"
-	"github.com/gvarma28/MiniRL/internal/datastore"
 	"go.uber.org/zap"
 )
 
@@ -81,13 +80,13 @@ func main() {
 func getDatastore(datastore string, logger *zap.Logger) RateLimiter {
 	switch datastore {
 	case "sqlite":
-		rl, err := datastore.NewSQLiteRateLimiter("rate_limits.db", logger)
+		rl, err := NewSQLiteRateLimiter("rate_limits.db", logger)
 		if err != nil {
 			logger.Fatal("Failed to connect to SQLite", zap.Error(err))
 		}
 		return rl
 	case "redis":
-		return datastore.NewRedisRateLimiter("localhost:6379", logger)
+		return NewRedisRateLimiter("localhost:6379", logger)
 	default:
 		logger.Fatal("Unsupported datastore")
 	}
